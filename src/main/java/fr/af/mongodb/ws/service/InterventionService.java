@@ -2,7 +2,7 @@ package fr.af.mongodb.ws.service;
 
 import java.util.List;
 
-import fr.af.mondodb.ws.model.Intervention;
+import fr.af.mondodb.ws.model.Actividad;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -15,6 +15,6 @@ public interface InterventionService {
  	 *
  	 * @return the all interventions
  	 */
- 	List<Intervention>  getAllInterventions ();
+ 	List<Actividad>  getAllInterventions ();
 
 }

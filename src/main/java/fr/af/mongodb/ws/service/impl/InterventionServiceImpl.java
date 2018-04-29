@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
-import fr.af.mondodb.ws.model.Intervention;
+import fr.af.mondodb.ws.model.Actividad;
 import fr.af.mongodb.ws.repository.InterventionRepository;
 import fr.af.mongodb.ws.service.InterventionService;
 
@@ -25,18 +25,18 @@ public class InterventionServiceImpl implements InterventionService {
 	private InterventionRepository interventionRepository;
 
 	@Override
-	public List<Intervention> getAllInterventions() {
+	public List<Actividad> getAllInterventions() {
 		logger.info("BEGIN - getAllInterventions:");
 		DBCursor inteventionList = null;
 		DBObject interventionMongodb = null;
-		List<Intervention> interventionRResultList = new ArrayList<Intervention>();
+		List<Actividad> interventionRResultList = new ArrayList<Actividad>();
 		try {
 			inteventionList = interventionRepository.findAllInterventions();
 			while (inteventionList.hasNext()) {
 				interventionMongodb = inteventionList.next();
-				Intervention intervention = new Intervention((String) interventionMongodb.get("type"),
-						(String) interventionMongodb.get("operation"), (String) interventionMongodb.get("status"),
-						(String) interventionMongodb.get("code_intervention"));
+				Actividad intervention = new Actividad((String) interventionMongodb.get("aplicacion"),(String) interventionMongodb.get("tiempo")
+						, (String) interventionMongodb.get("fecha"), (String) interventionMongodb.get("error")
+						, (String) interventionMongodb.get("camino"), (String) interventionMongodb.get("nombreActividad"));
 				interventionRResultList.add(intervention);
 			}
 			logger.info("conversion from DBObjet to Intervention  process complete.");

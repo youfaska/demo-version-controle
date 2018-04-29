@@ -1,14 +1,11 @@
 package fr.af.mongodb.ws.repository.impl;
 
-import java.util.Collection;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 
 import fr.af.mongodb.ws.common.Constant;
 import fr.af.mongodb.ws.config.ConexionDb;
@@ -30,13 +27,13 @@ public class InterventionRepositoryImpl implements InterventionRepository{
 	@Override
 	public DBCursor findAllInterventions() {
 		logger.info("BEGIN - findAllInterventions: ");
-		DBCursor interventionList = null;
+		DBCursor elementList = null;
 		DBCollection dbCollection  = conexionBd.getMongoDbCollection(Constant.COLLECTION_INTERVENTION);
 		try {
-			interventionList =  dbCollection.find();
-			if (interventionList!=null){
-				logger.info("Total elemente retrieved: "+interventionList.size());
-				logger.debug(interventionList);
+			elementList =  dbCollection.find();
+			if (elementList!=null){
+				logger.info("Total elemente retrieved: "+elementList.size());
+				logger.debug(elementList);
 			}else{
 				logger.error("An error has occured during intervention retrieving process...");
 			}
@@ -44,7 +41,7 @@ public class InterventionRepositoryImpl implements InterventionRepository{
 			logger.error(exception);
 		}
 		logger.info("END - findAllInterventions. ");
-		return interventionList;
+		return elementList;
 	}
 
 	
